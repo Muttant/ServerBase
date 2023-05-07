@@ -1,0 +1,16 @@
+2023-05-07 00:24:47 [restartedMain] INFO  com.example.server.ServerApplication - Starting ServerApplication on DESKTOP-ASHMIGD with PID 13700 (C:\Users\Carnn\Documents\ServerBase\target\classes started by Carnn in C:\Users\Carnn\Documents\ServerBase)
+2023-05-07 00:24:47 [restartedMain] DEBUG com.example.server.ServerApplication - Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2023-05-07 00:24:47 [restartedMain] INFO  com.example.server.ServerApplication - No active profile set, falling back to default profiles: default
+2023-05-07 00:24:56 [restartedMain] INFO  com.example.server.ServerApplication - Started ServerApplication in 9.624 seconds (JVM running for 11.188)
+2023-05-07 13:02:45 [restartedMain] INFO  com.example.server.ServerApplication - Starting ServerApplication on DESKTOP-ASHMIGD with PID 19868 (C:\Users\Carnn\Documents\ServerBase\target\classes started by Carnn in C:\Users\Carnn\Documents\ServerBase)
+2023-05-07 13:02:45 [restartedMain] DEBUG com.example.server.ServerApplication - Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2023-05-07 13:02:45 [restartedMain] INFO  com.example.server.ServerApplication - No active profile set, falling back to default profiles: default
+2023-05-07 13:02:55 [restartedMain] INFO  com.example.server.ServerApplication - Started ServerApplication in 9.689 seconds (JVM running for 16.817)
+2023-05-07 13:07:54 [restartedMain] INFO  com.example.server.ServerApplication - Starting ServerApplication on DESKTOP-ASHMIGD with PID 23768 (C:\Users\Carnn\Documents\ServerBase\target\classes started by Carnn in C:\Users\Carnn\Documents\ServerBase)
+2023-05-07 13:07:54 [restartedMain] DEBUG com.example.server.ServerApplication - Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2023-05-07 13:07:54 [restartedMain] INFO  com.example.server.ServerApplication - No active profile set, falling back to default profiles: default
+2023-05-07 13:08:02 [restartedMain] INFO  com.example.server.ServerApplication - Started ServerApplication in 8.437 seconds (JVM running for 9.804)
+2023-05-07 13:08:32 [restartedMain] INFO  com.example.server.ServerApplication - Starting ServerApplication on DESKTOP-ASHMIGD with PID 18636 (C:\Users\Carnn\Documents\ServerBase\target\classes started by Carnn in C:\Users\Carnn\Documents\ServerBase)
+2023-05-07 13:08:32 [restartedMain] DEBUG com.example.server.ServerApplication - Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2023-05-07 13:08:32 [restartedMain] INFO  com.example.server.ServerApplication - No active profile set, falling back to default profiles: default
+2023-05-07 13:08:38 [restartedMain] INFO  com.example.server.ServerApplication - Started ServerApplication in 6.692 seconds (JVM running for 7.925)
