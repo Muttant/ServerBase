@@ -13,14 +13,15 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MovieRequestDto extends BaseObjectDto {
+public class MovieRequestDto {
     private String tenPhim;
     private String biDanh;
-    private String trailerUrl;
-    private String hinhAnhUrl;
+    private String trailer;
+    private String hinhAnh;
     private String moTa;
-    private LocalDate ngayKhoiChieu;
+    private String ngayKhoiChieu;
     private int danhGia;
+    private long maPhim;
     private String theLoai;
     private String daoDien;
     private String dienVien;

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -15,11 +16,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class CommentRequestDto extends BaseObjectDto {
     private String avtId;
-    private String fullName;
+    private String username;
     private float point;
     private short likes;
-    private MovieRequestDto movie;
+    private String post;
+    private String maPhim;
     private boolean dataTest;
-    private LocalDateTime createAt;
-    private UserDto user;
+    private String createAt;
+    private List<String> userLikeThisComment;
 }

@@ -17,7 +17,7 @@ public class MovieResponseDto extends BaseObjectDto{
     private long maPhim;
     private String tenPhim;
     private String biDanh;
-    private String trailerUrl;
+    private String trailer;
     private String hinhAnh;
     private String moTa;
     private String ngayKhoiChieu;

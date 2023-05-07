@@ -10,7 +10,7 @@ public interface MovieService {
     TKResponse<MovieResponseDto> findById(Long id);
     TKResponse<List<MovieResponseDto>> findAll();
     TKResponse<MovieResponseDto> save(MovieRequestDto dto);
-    TKResponse<MovieResponseDto> update(Long id, MovieRequestDto dto);
+    TKResponse<MovieResponseDto> update(MovieRequestDto dto);
     TKResponse<Boolean> deleteById(Long id);
 
 

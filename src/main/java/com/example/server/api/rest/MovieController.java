@@ -30,9 +30,9 @@ public class MovieController {
         return movieService.save(dto);
     }
 
-    @PutMapping("/{movieId}")
-    public TKResponse<MovieResponseDto> update(@PathVariable("movieId") Long movieId, @RequestBody MovieRequestDto dto) {
-        return movieService.update(movieId, dto);
+    @PostMapping("/CapNhatPhim")
+    public TKResponse<MovieResponseDto> update(@RequestBody MovieRequestDto dto) {
+        return movieService.update(dto);
     }
 
     @DeleteMapping("/{movieId}")

@@ -51,8 +51,8 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public TKResponse<MovieResponseDto> update(Long id, MovieRequestDto dto) {
-        Movie entity = movieRepository.findById(id).orElse(null);
+    public TKResponse<MovieResponseDto> update(MovieRequestDto dto) {
+        Movie entity = movieRepository.findById(dto.getMaPhim()).orElse(null);
         if (entity == null)
             return new TKResponse<>(ID_NOT_EXIST);
 

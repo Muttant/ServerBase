@@ -23,6 +23,7 @@ public class Comment extends BaseObject {
     private String avtId;
     private String fullName;
     private float point;
+    private String post;
     private short likes;
     @ManyToOne
     @JoinColumn(name = "maPhim", referencedColumnName = "id")
