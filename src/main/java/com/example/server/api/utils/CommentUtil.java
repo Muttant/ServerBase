@@ -1,6 +1,5 @@
 package com.example.server.api.utils;
 
-import com.example.server.api.dto.request.CommentRequestDto;
 import com.example.server.api.dto.response.CommentResponseDto;
 import com.example.server.api.entity.Comment;
 

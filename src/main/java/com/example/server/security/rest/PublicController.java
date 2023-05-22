@@ -10,6 +10,8 @@ import com.example.server.security.repository.UserRepository;
 import com.example.server.security.response.TKResponse;
 import com.example.server.security.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -87,12 +89,12 @@ public class PublicController {
 
 
     @PostMapping("/QuanLyNguoiDung/DangNhap")
-    public TokenDto login(@RequestBody UserDto dto){
+    public ResponseEntity<?> login(@RequestBody UserDto dto){
 
 
         User user = userRepository.findByUsername(dto.getUsername());
-        if (!user.getPassword().equals(dto.getPassword()))
-            return null;
+        if (user == null || !user.getPassword().equals(dto.getPassword()))
+            return new ResponseEntity<>("Tài khoản hoặc mật khẩu không đúng!", HttpStatus.INTERNAL_SERVER_ERROR);
 
         Algorithm algorithm = Algorithm.HMAC256(Constants.SECRET_KEY.getBytes());
 
@@ -114,7 +116,7 @@ public class PublicController {
         tokenDto.setMaNhom("GP09");
         tokenDto.setSoDT("0123456789");
         tokenDto.setTaiKhoan(user.getUsername());
-        return tokenDto;
+        return new ResponseEntity<>(tokenDto, HttpStatus.OK);
 
     }
 
