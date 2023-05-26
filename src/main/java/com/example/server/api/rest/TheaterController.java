@@ -1,18 +1,25 @@
 package com.example.server.api.rest;
 
 import com.example.server.api.dto.request.TheaterRequestDto;
+import com.example.server.api.dto.response.TheaterResponseDto;
 import com.example.server.api.service.TheaterService;
 import com.example.server.security.response.TKResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/theater")
+@RequestMapping("/api/QuanLyRap")
 @RequiredArgsConstructor
 public class TheaterController {
     private final TheaterService theaterService;
+
+    @GetMapping("/LayThongTinLichChieuHeThongRap")
+    public TKResponse<List<TheaterResponseDto>> getAll(){
+        return theaterService.getAll();
+    }
 
     @GetMapping("/{theaterId}")
     public TKResponse<TheaterRequestDto> findById(@PathVariable("theaterId") UUID theaterId){

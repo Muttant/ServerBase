@@ -25,4 +25,5 @@ public class Cinema extends BaseObject {
     @JoinColumn(name = "maHeThongRap", referencedColumnName = "id")
     private Theater maHeThongRap;
     private String sdt;
+
 }

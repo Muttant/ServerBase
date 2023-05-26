@@ -1,11 +1,14 @@
 package com.example.server.api.service;
 
 import com.example.server.api.dto.request.TheaterRequestDto;
+import com.example.server.api.dto.response.TheaterResponseDto;
 import com.example.server.security.response.TKResponse;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface TheaterService {
+    TKResponse<List<TheaterResponseDto>> getAll();
     TKResponse<TheaterRequestDto> findById(UUID id);
     TKResponse<TheaterRequestDto> save(TheaterRequestDto dto);
     TKResponse<TheaterRequestDto> update(UUID id, TheaterRequestDto dto);

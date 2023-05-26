@@ -2,17 +2,20 @@ package com.example.server.api.service.impl;
 
 import com.example.server.api.dto.request.TheaterRequestDto;
 
+import com.example.server.api.dto.response.TheaterResponseDto;
 import com.example.server.api.entity.Theater;
 import com.example.server.api.exception.TKException;
 import com.example.server.api.repository.TheaterRepository;
 import com.example.server.api.service.TheaterService;
 
 import com.example.server.api.utils.TheaterUtil;
+import com.example.server.api.utils.TheaterUtil2;
 import com.example.server.security.response.TKResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 import static com.example.server.security.response.ResponseStatus.*;
@@ -21,6 +24,13 @@ import static com.example.server.security.response.ResponseStatus.*;
 @RequiredArgsConstructor
 public class TheaterServiceImpl implements TheaterService {
     private final TheaterRepository theaterRepository;
+    private final TheaterUtil2 theaterUtil;
+
+    @Override
+    public TKResponse<List<TheaterResponseDto>> getAll() {
+        return new TKResponse<>(theaterUtil.toTheaterDtos(theaterRepository.findAll()));
+    }
+
     @Override
     public TKResponse<TheaterRequestDto> findById(UUID id) {
         Theater entity = theaterRepository.findById(id).orElse(null);

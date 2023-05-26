@@ -11,4 +11,7 @@ import java.util.List;
 public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
     @Query("select sc from Schedule sc, Room ro where sc.ngayGioiChieu >= current_date and sc.movie.id = ?1 and sc.room.id = ro.id and ro.cinema.id = ?2")
     List<Schedule> findByMovieIdAndCinemaId(long movieId, long cinemaId);
+
+    @Query("select scd from Schedule as scd where scd.movie.id = ?1")
+    List<Schedule> getByMovieId(long id);
 }

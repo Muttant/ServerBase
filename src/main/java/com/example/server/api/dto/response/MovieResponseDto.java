@@ -6,14 +6,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MovieResponseDto extends BaseObjectDto{
+public class MovieResponseDto extends BaseObjectDto {
     private long maPhim;
     private String tenPhim;
     private String biDanh;
@@ -29,4 +28,5 @@ public class MovieResponseDto extends BaseObjectDto{
     private String rated;
     private byte thoiLuong;
     private List<BannerResponseDto> banners;
+    private List<ScheduleMovieResponseDto> lstLichChieuTheoPhim;
 }
