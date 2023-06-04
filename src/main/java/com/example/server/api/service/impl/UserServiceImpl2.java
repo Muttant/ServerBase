@@ -6,23 +6,29 @@ import com.example.server.api.dto.response.UserInfoResponseDto;
 import com.example.server.api.entity.*;
 import com.example.server.api.repository.TicketRepository;
 import com.example.server.api.service.UserService;
+import com.example.server.security.entity.Role;
 import com.example.server.security.entity.User;
+import com.example.server.security.repository.RoleRepository;
 import com.example.server.security.repository.UserRepository;
 import com.example.server.security.response.ResponseStatus;
 import com.example.server.security.response.TKResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static com.example.server.security.response.ResponseStatus.USERNAME_IS_NOT_EXIST;
 
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl2 implements UserService {
     private final UserRepository userRepository;
     private final TicketRepository ticketRepository;
+    private final RoleRepository roleRepository;
     @Override
     public TKResponse<UserInfoResponseDto> getUserInfo(UserInfoResponseDto dto) {
         User user = userRepository.findByUsername(dto.getTaiKhoan());
@@ -36,7 +42,7 @@ public class UserServiceImpl2 implements UserService {
         result.setMaNhom("GP09");
         result.setMatKhau(user.getPassword());
         result.setTaiKhoan(user.getUsername());
-        result.setLoaiNguoiDung("QuanTri");
+        result.setLoaiNguoiDung(user.getRoles().get(0).getName());
         List<TicketResponseDto> ticketResponseDtos = new ArrayList<>();
         result.setThongTinDatVe(ticketResponseDtos);
 
@@ -76,5 +82,44 @@ public class UserServiceImpl2 implements UserService {
         }
 
         return new TKResponse<>(result);
+    }
+
+    @Override
+    public TKResponse<List<UserInfoResponseDto>> getAll() {
+        List<User> users = userRepository.findAll();
+        int numberOfElements = users.size();
+        List<UserInfoResponseDto> result = new ArrayList<>();
+        for (int i = 0; i < numberOfElements; i++) {
+            result.add(new UserInfoResponseDto(users.get(i)));
+        }
+        return new TKResponse<>(result);
+    }
+
+    @Override
+    public TKResponse<UserInfoResponseDto> update(UserInfoResponseDto dto) {
+        User entity = userRepository.findByEmail(dto.getEmail());
+        if (entity == null)
+            return new TKResponse(USERNAME_IS_NOT_EXIST);
+
+        entity.setEmail(dto.getEmail());
+        entity.setFullName(dto.getHoTen());
+        entity.setPassword(dto.getMatKhau());
+        entity.setPhone(dto.getSoDT());
+        Role role = roleRepository.findByName(dto.getLoaiNguoiDung());
+        List<Role> roles = new ArrayList<>();
+        roles.add(role);
+        entity.setRoles(roles);
+        userRepository.save(entity);
+
+        return new TKResponse<>(dto);
+    }
+
+    @Transactional
+    @Override
+    public void deleteByUsername(String username) {
+        if (!userRepository.existsByUsername(username))
+            return;
+
+        userRepository.deleteByUsername(username);
     }
 }

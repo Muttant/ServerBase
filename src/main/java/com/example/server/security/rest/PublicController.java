@@ -98,10 +98,12 @@ public class PublicController {
 
         Algorithm algorithm = Algorithm.HMAC256(Constants.SECRET_KEY.getBytes());
 
+        Date date = new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000L);
         String access_token = JWT.create()
                 .withSubject(user.getUsername())
                 .withClaim("id",user.getId())
                 .withClaim("roles", user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
+                .withExpiresAt(date)
                 .sign(algorithm);
 
         String refresh_token = JWT.create()

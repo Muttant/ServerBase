@@ -13,6 +13,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static com.example.server.security.response.ResponseStatus.*;
@@ -34,7 +35,7 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public TKResponse<List<MovieResponseDto>> findAll() {
         List<Movie> movies = movieRepository.findAll();
-        List<MovieResponseDto> movieDtos = movies.stream().map(MovieUtil::convertToDto).collect(Collectors.toList());
+        List<MovieResponseDto> movieDtos = movies.stream().filter(Movie::isShow).map(MovieUtil::convertToDto).collect(Collectors.toList());
         return new TKResponse<>(movieDtos);
     }
 

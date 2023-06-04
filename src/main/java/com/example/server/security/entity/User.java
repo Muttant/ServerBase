@@ -35,7 +35,7 @@ public class User implements UserDetails {
     private Integer loginType;
     @Column(name = "firebase_uid")
     private String firebaseUID;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
     @JoinTable(
             name = "tbl_user_role",
