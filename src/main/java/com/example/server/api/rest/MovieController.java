@@ -22,10 +22,15 @@ public class MovieController {
 
     @GetMapping("/LayDanhSachPhim")
     public TKResponse<List<MovieResponseDto>> findAll() {
-        return movieService.findAll();
+        return movieService.findAllAndFilter();
     }
 
-    @PostMapping
+    @GetMapping("/LayToanBoDanhSachPhim")
+    public TKResponse<List<MovieResponseDto>> findAllNotFiler() {
+        return movieService.findAllNotFilter();
+    }
+
+    @PostMapping("/ThemPhimUploadHinh")
     public TKResponse<MovieResponseDto> save(@RequestBody MovieRequestDto dto) {
         return movieService.save(dto);
     }

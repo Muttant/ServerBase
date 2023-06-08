@@ -64,6 +64,10 @@ public enum ResponseStatus {
     SERVER_ERROR_WHEN_SAVE(500_001,"Error while save"),
 
     SERVER_ERROR_WHEN_UPDATE(500_001,"Error while updateInfo"),
+    MONTH_ERROR_1(400_041,"Error 1 < month < 12"),
+    YEAR_ERROR(400_042,"Error year "),
+
+
             ;
 
     private final int code;

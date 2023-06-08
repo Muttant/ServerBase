@@ -11,10 +11,12 @@ import java.util.Set;
 
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, Long> {
-    @Query("select distinct mv " +
-            " from Movie as mv " +
-            " join Schedule as scd on scd.movie.id = mv.id " +
-            " join Cinema  as cm on scd.room.id = cm.id " +
-            " where cm.id = ?1")
+
+    @Query("Select distinct mv" +
+            " from Movie as mv" +
+            " join Schedule as scd on scd.movie.id = mv.id" +
+            " join Room  as rm on rm.id = scd.room.id" +
+            " where rm.cinema.id = ?1" +
+            " and scd.ngayGioiChieu >= current_date ")
     Set<Movie> getByCinemaId(long id);
 }

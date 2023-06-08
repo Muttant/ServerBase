@@ -29,6 +29,7 @@ public class MovieUtil {
             dto.setDienVien(entity.getDienVien());
             dto.setRated(entity.getRated());
             dto.setThoiLuong(entity.getThoiLuongPhim());
+            dto.setShow(entity.isShow());
         }
         return dto;
     }
@@ -36,9 +37,6 @@ public class MovieUtil {
     public static Movie setDataEntityFromDto(Movie entity, MovieRequestDto dto) throws TKException {
         if (StringUtils.isEmpty(dto.getTenPhim()))
             throw new TKException(MOVIE_NAME_IS_EMPTY);
-
-        if (StringUtils.isEmpty(dto.getBiDanh()))
-            throw new TKException(ALIASES_IS_EMPTY);
 
         if (StringUtils.isEmpty(dto.getTrailer()))
             throw new TKException(TRAILER_URL_IS_EMPTY);
@@ -64,7 +62,7 @@ public class MovieUtil {
         entity.setDienVien(dto.getDienVien());
         entity.setRated(dto.getRated());
         entity.setDanhGia(dto.getDanhGia());
-        //is show
+        entity.setShow(dto.isShow());
         entity.setThoiLuongPhim(dto.getThoiLuongPhim());
 
         return entity;

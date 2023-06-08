@@ -31,4 +31,5 @@ public class TheaterResponseDto {
                 this.lstCumRap = entity.getCinemas().stream().map(e -> new CinemaResponseDto(e)).collect(Collectors.toList());
         }
     }
+
 }

@@ -11,7 +11,18 @@ import java.util.UUID;
 
 @Repository
 public interface CinemaRepository extends JpaRepository<Cinema, Long> {
-    @Query("select distinct cnm from Cinema cnm, Room ro, Schedule sc " +
-            "where sc.ngayGioiChieu >= current_date and sc.movie.id = ?1 and sc.room.id = ro.id and ro.cinema.id = cnm.id")
-    List<Cinema> findByMovieId(long movieId);
+//    @Query("select distinct cnm " +
+//            "from Cinema cnm, Room ro, Schedule sc " +
+//            "where sc.ngayGioiChieu >= current_date " +
+//            "and sc.movie.id = ?1 " +
+//            "and sc.room.id = ro.id " +
+//            "and ro.cinema.id = cnm.id")
+    @Query("select distinct cnm " +
+            "from Cinema cnm, Room ro, Schedule sc " +
+            "where sc.ngayGioiChieu >= current_date " +
+            "and sc.movie.id = ?1 " +
+            "and sc.room.id = ro.id " +
+            "and ro.cinema.id = cnm.id " +
+            "and cnm.maHeThongRap.id = ?2")
+    List<Cinema> findByMovieId(long movieId, long theaterId);
 }

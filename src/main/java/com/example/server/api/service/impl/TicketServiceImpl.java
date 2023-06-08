@@ -1,6 +1,7 @@
 package com.example.server.api.service.impl;
 
 import com.example.server.api.dto.request.BookTicketsRequestDto;
+import com.example.server.api.dto.response.MovieSaleByWeekResponseDto;
 import com.example.server.api.entity.Schedule;
 import com.example.server.api.entity.Seat;
 import com.example.server.api.entity.Ticket;
@@ -16,6 +17,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.List;
+
+import static com.example.server.security.response.ResponseStatus.MONTH_ERROR_1;
+import static com.example.server.security.response.ResponseStatus.YEAR_ERROR;
 
 @Service
 @RequiredArgsConstructor
@@ -46,5 +52,18 @@ public class TicketServiceImpl implements TicketService {
         });
 
         return new TKResponse<>("Đặt vé thành công!", ResponseStatus.SUCCESS);
+    }
+
+    @Override
+    public TKResponse<List<MovieSaleByWeekResponseDto>> getSalebyWeek(Integer month, Integer year) {
+        if(month>12 || month<1 )
+            return new TKResponse(null,MONTH_ERROR_1);
+        int currentYear = LocalDateTime.now().getYear();
+        if(year < 2010 || year > currentYear)
+            return new TKResponse(null, YEAR_ERROR);
+
+        List<MovieSaleByWeekResponseDto> data = ticketRepository.getSaleByWeek(month, year);
+
+        return new TKResponse<>(data);
     }
 }

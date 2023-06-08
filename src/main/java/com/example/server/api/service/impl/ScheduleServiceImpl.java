@@ -41,7 +41,7 @@ public class ScheduleServiceImpl implements ScheduleService {
             theaterResponseDtos.add(dto);
             List<CinemaResponseDto> cinemaResponseDtos = new ArrayList<>();
             dto.setCumRapChieu(cinemaResponseDtos);
-            List<Cinema> cinemas = cinemaRepository.findByMovieId(movieId);
+            List<Cinema> cinemas = cinemaRepository.findByMovieId(movieId, e.getId());
             cinemas.forEach(cinema -> {
                 CinemaResponseDto cinemaResponseDto = scheduleUltill.convertToCinemaResponseDto(cinema);
                 cinemaResponseDtos.add(cinemaResponseDto);

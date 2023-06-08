@@ -2,6 +2,7 @@ package com.example.server.api.service.impl;
 
 import com.example.server.api.dto.request.MovieRequestDto;
 import com.example.server.api.dto.response.MovieResponseDto;
+import com.example.server.api.repository.ScheduleRepository;
 import com.example.server.api.utils.MovieUtil;
 import com.example.server.api.exception.TKException;
 import com.example.server.api.entity.Movie;
@@ -12,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -22,6 +24,7 @@ import static com.example.server.security.response.ResponseStatus.*;
 @RequiredArgsConstructor
 public class MovieServiceImpl implements MovieService {
     private final MovieRepository movieRepository;
+    private final ScheduleRepository scheduleRepository;
 
     @Override
     public TKResponse<MovieResponseDto> findById(Long id) {
@@ -33,7 +36,20 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public TKResponse<List<MovieResponseDto>> findAll() {
+    public TKResponse<List<MovieResponseDto>> findAllAndFilter() {
+        List<Movie> movies = movieRepository.findAll();
+        List<MovieResponseDto> movieDtos = new ArrayList<>();
+        movies.forEach(e -> {
+            MovieResponseDto movieDto = MovieUtil.convertToDto(e);
+            movieDto.setScheduled(scheduleRepository.hasScheduled(e.getId()));
+            movieDtos.add(movieDto);
+        });
+
+        return new TKResponse<>(movieDtos);
+    }
+
+    @Override
+    public TKResponse<List<MovieResponseDto>> findAllNotFilter() {
         List<Movie> movies = movieRepository.findAll();
         List<MovieResponseDto> movieDtos = movies.stream().filter(Movie::isShow).map(MovieUtil::convertToDto).collect(Collectors.toList());
         return new TKResponse<>(movieDtos);

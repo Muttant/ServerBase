@@ -2,7 +2,9 @@ package com.example.server.api.rest;
 
 import com.example.server.api.dto.request.TheaterRequestDto;
 import com.example.server.api.dto.response.TheaterResponseDto;
+import com.example.server.api.dto.response.TheaterTestResponseDto;
 import com.example.server.api.service.TheaterService;
+import com.example.server.api.service.TheaterTestService;
 import com.example.server.security.response.TKResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +17,15 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class TheaterController {
     private final TheaterService theaterService;
+    private final TheaterTestService theaterTestService;
 
     @GetMapping("/LayThongTinLichChieuHeThongRap")
     public TKResponse<List<TheaterResponseDto>> getAll(){
         return theaterService.getAll();
+    }
+    @GetMapping("/LstTheater")
+    public TKResponse<List<TheaterTestResponseDto>> getLstTheater(){
+        return theaterTestService.getAll();
     }
 
     @GetMapping("/{theaterId}")

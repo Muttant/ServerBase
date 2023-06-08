@@ -1,5 +1,6 @@
 package com.example.server.api.dto.response;
 
+import com.example.server.api.entity.Movie;
 import com.example.server.security.dto.BaseObjectDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +28,15 @@ public class MovieResponseDto extends BaseObjectDto {
     private boolean isShow;
     private String rated;
     private byte thoiLuong;
+    private boolean isScheduled;
     private List<BannerResponseDto> banners;
     private List<ScheduleMovieResponseDto> lstLichChieuTheoPhim;
+
+    public MovieResponseDto(Movie entity) {
+        if (entity == null)
+            return;
+
+        this.tenPhim = entity.getTenPhim();
+        this.hinhAnh = entity.getHinhAnhUrl();
+    }
 }

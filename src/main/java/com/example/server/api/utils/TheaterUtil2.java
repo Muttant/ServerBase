@@ -46,14 +46,14 @@ public class TheaterUtil2 {
             dto.setHinhAnh(e.getHinhAnhUrl());
             dto.setDiachi(e.getDiaChi());
             Set<Movie> movies = movieRepository.getByCinemaId(e.getId());
-            dto.setDanhSachPhim(toMovieDtos(movies));
+            dto.setDanhSachPhim(toMovieDtos(movies, e.getId()));
             dtos.add(dto);
         });
 
         return dtos;
     }
 
-    private List<MovieResponseDto> toMovieDtos(Set<Movie> entities){
+    private List<MovieResponseDto> toMovieDtos(Set<Movie> entities, long cinemaId){
         List<MovieResponseDto> dtos = new ArrayList<>();
 
         entities.forEach(e -> {
@@ -61,7 +61,7 @@ public class TheaterUtil2 {
             dto.setHinhAnh(e.getHinhAnhUrl());
             dto.setMaPhim(e.getId());
             dto.setTenPhim(e.getTenPhim());
-            List<Schedule> schedules = scheduleRepository.getByMovieId(e.getId());
+            List<Schedule> schedules = scheduleRepository.getByMovieId(e.getId(), cinemaId);
             dto.setLstLichChieuTheoPhim(toScheduleDtos(schedules));
             dtos.add(dto);
         });

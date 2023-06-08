@@ -8,7 +8,8 @@ import java.util.List;
 
 public interface MovieService {
     TKResponse<MovieResponseDto> findById(Long id);
-    TKResponse<List<MovieResponseDto>> findAll();
+    TKResponse<List<MovieResponseDto>> findAllAndFilter();
+    TKResponse<List<MovieResponseDto>> findAllNotFilter();
     TKResponse<MovieResponseDto> save(MovieRequestDto dto);
     TKResponse<MovieResponseDto> update(MovieRequestDto dto);
     TKResponse<Boolean> deleteById(Long id);
