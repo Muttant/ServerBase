@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface TheaterTestService {
     TKResponse<List<TheaterTestResponseDto>> getAll();
+
+    TKResponse<List<TheaterTestResponseDto>> findByTheaterId(Long theaterId);
 }

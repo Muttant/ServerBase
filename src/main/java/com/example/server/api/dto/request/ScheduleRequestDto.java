@@ -14,6 +14,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ScheduleRequestDto extends BaseObjectDto {
     private MovieRequestDto movieRequestDto;
-    private LocalDateTime ngayGioiChieu;
+    private String ngayGioiChieu;
     private int giaVe;
 }

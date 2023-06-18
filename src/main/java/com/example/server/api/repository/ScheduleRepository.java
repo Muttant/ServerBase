@@ -15,8 +15,8 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
     @Query("select scd " +
             " from Schedule as scd " +
             " join Room as rm on scd.room.id = rm.id" +
-            " where scd.movie.id = ?1 and rm.cinema.id = ?2 " +
-            "and scd.ngayGioiChieu >= current_date ")
+            " where scd.movie.id = ?1 and rm.cinema.id = ?2 ")
+//    scd.ngayGioiChieu >= current_date
     List<Schedule> getByMovieId(long movieId, long cinemaId);
     @Query("select case when count(scd) > 0 then true else false end from Schedule  as scd where scd.movie.id = ?1")
     boolean hasScheduled(long id);

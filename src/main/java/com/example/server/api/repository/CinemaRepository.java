@@ -1,5 +1,6 @@
 package com.example.server.api.repository;
 
+import com.example.server.api.dto.response.CinemaResponseDto;
 import com.example.server.api.entity.Cinema;
 import com.example.server.api.entity.Theater;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -25,4 +26,7 @@ public interface CinemaRepository extends JpaRepository<Cinema, Long> {
             "and ro.cinema.id = cnm.id " +
             "and cnm.maHeThongRap.id = ?2")
     List<Cinema> findByMovieId(long movieId, long theaterId);
+
+    @Query("select new com.example.server.api.dto.response.CinemaResponseDto(cnm, true ) from Cinema as cnm where cnm.maHeThongRap.id = ?1")
+    List<CinemaResponseDto> findAllByTheaterId(Long id);
 }

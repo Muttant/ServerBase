@@ -28,7 +28,7 @@ public class TheaterResponseDto {
             this.tenHeThongRap = entity.getTenHeThongRap();
             this.logo = entity.getLogoUrl();
             if (CollectionUtils.isNotEmpty(entity.getCinemas()))
-                this.lstCumRap = entity.getCinemas().stream().map(e -> new CinemaResponseDto(e)).collect(Collectors.toList());
+                this.lstCumRap = entity.getCinemas().stream().map(e -> new CinemaResponseDto(e, false)).collect(Collectors.toList());
         }
     }
 

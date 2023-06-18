@@ -11,7 +11,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,5 +68,20 @@ public class ScheduleServiceImpl implements ScheduleService {
         seatResponseDtos.forEach(e -> e.setGiaVe(schedule.getGiaVe()));
 
         return new TKResponse<>(new ScheduleSeatDto(scheduleRoomDto, seatResponseDtos));
+    }
+
+    @Override
+    public void add(ScheduleResponseDto dto) {
+        Schedule entity = new Schedule();
+        entity.setGiaVe(dto.getGiaVe());
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyy HH:mm:ss");
+        entity.setNgayGioiChieu(LocalDateTime.parse(dto.getNgayChieuGioChieu(), dateFormat));
+        Movie movie = new Movie();
+        movie.setId(dto.getMaPhim());
+        entity.setMovie(movie);
+        Room room = new Room();
+        room.setId(dto.getMaRap());
+        entity.setRoom(room);
+        scheduleRepository.save(entity);
     }
 }

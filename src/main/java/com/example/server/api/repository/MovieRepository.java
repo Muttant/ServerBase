@@ -16,7 +16,6 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
             " from Movie as mv" +
             " join Schedule as scd on scd.movie.id = mv.id" +
             " join Room  as rm on rm.id = scd.room.id" +
-            " where rm.cinema.id = ?1" +
-            " and scd.ngayGioiChieu >= current_date ")
+            " where rm.cinema.id = ?1")
     Set<Movie> getByCinemaId(long id);
 }

@@ -21,7 +21,7 @@ public class TheaterUtil2 {
     private final MovieRepository movieRepository;
     private final ScheduleRepository scheduleRepository;
 
-    public List<TheaterResponseDto> toTheaterDtos(List<Theater> entities) {
+    public List<TheaterResponseDto> toTheaterDtos(List<Theater> entities, boolean hasCinema) {
         List<TheaterResponseDto> dtos = new ArrayList<>();
 
         entities.forEach(e -> {
@@ -29,7 +29,8 @@ public class TheaterUtil2 {
             dto.setMaHeThongRap(e.getId());
             dto.setTenHeThongRap(e.getTenHeThongRap());
             dto.setLogo(e.getLogoUrl());
-            dto.setLstCumRap(toCinemaDtos(e.getCinemas()));
+            if (hasCinema)
+                dto.setLstCumRap(toCinemaDtos(e.getCinemas()));
             dtos.add(dto);
         });
 

@@ -9,11 +9,10 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface TheaterRepository extends JpaRepository<Theater, UUID> {
+public interface TheaterRepository extends JpaRepository<Theater, Long> {
     @Query("select distinct tt " +
             "from Theater tt, Cinema cnm, Room ro, Schedule sc " +
-            "where sc.ngayGioiChieu >= current_date " +
-            "and sc.movie.id = ?1 " +
+            "where sc.movie.id = ?1 " +
             "and sc.room.id = ro.id " +
             "and ro.cinema.id = cnm.id " +
             "and cnm.maHeThongRap.id = tt.id")

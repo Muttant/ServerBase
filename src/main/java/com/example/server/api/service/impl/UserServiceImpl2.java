@@ -105,10 +105,6 @@ public class UserServiceImpl2 implements UserService {
         entity.setFullName(dto.getHoTen());
         entity.setPassword(dto.getMatKhau());
         entity.setPhone(dto.getSoDT());
-        Role role = roleRepository.findByName(dto.getLoaiNguoiDung());
-        List<Role> roles = new ArrayList<>();
-        roles.add(role);
-        entity.setRoles(roles);
         userRepository.save(entity);
 
         return new TKResponse<>(dto);

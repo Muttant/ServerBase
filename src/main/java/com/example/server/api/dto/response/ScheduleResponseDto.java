@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.joda.time.DateTime;
 
 import java.time.LocalDateTime;
 
@@ -12,8 +13,9 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ScheduleResponseDto extends BaseObjectDto {
-    private MovieResponseDto movieResponseDto;
-    private LocalDateTime ngayGioiChieu;
+public class ScheduleResponseDto {
+    private long maPhim;
+    private long maRap;
+    private String ngayChieuGioChieu;
     private int giaVe;
 }

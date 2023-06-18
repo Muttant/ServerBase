@@ -24,6 +24,11 @@ public class TheaterTestServiceImpl implements TheaterTestService {
         return new TKResponse<>(convertEntitiesThaterToDtos(theaterRepository.findAll()));
     }
 
+    @Override
+    public TKResponse<List<TheaterTestResponseDto>> findByTheaterId(Long theaterId) {
+        return null;
+    }
+
     private List<TheaterTestResponseDto> convertEntitiesThaterToDtos(List<Theater> entities) {
         List<TheaterTestResponseDto> dtos = new ArrayList<>();
 

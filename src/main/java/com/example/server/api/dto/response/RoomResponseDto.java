@@ -1,5 +1,6 @@
 package com.example.server.api.dto.response;
 
+import com.example.server.api.entity.Room;
 import com.example.server.security.dto.BaseObjectDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,8 +13,14 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoomResponseDto extends BaseObjectDto {
+public class RoomResponseDto {
+    private long maRap;
     private String tenRap;
-    private List<SeatResponseDto> seats;
-    private CinemaResponseDto cinema;
+
+    public RoomResponseDto(Room entity) {
+        if (entity == null)
+            return;
+        this.maRap = entity.getId();
+        this.tenRap = entity.getTenRap();
+    }
 }

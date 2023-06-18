@@ -28,6 +28,7 @@ public class MovieUtil {
             dto.setDaoDien(entity.getDaoDien());
             dto.setDienVien(entity.getDienVien());
             dto.setRated(entity.getRated());
+            dto.setDanhGia(entity.getDanhGia());
             dto.setThoiLuong(entity.getThoiLuongPhim());
             dto.setShow(entity.isShow());
         }

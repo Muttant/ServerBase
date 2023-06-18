@@ -28,6 +28,10 @@ public class ScheduleUltil {
             dto.setBiDanh(entity.getBiDanh());
             dto.setTrailer(entity.getTrailerUrl());
             dto.setHinhAnh(entity.getHinhAnhUrl());
+            dto.setDaoDien(entity.getDaoDien());
+            dto.setDienVien(entity.getDienVien());
+            dto.setTheLoai(entity.getTheLoai());
+            dto.setRated(entity.getRated());
             dto.setMoTa(entity.getMoTa());
             dto.setNgayKhoiChieu(entity.getNgayKhoiChieu());
             dto.setDanhGia(entity.getDanhGia());

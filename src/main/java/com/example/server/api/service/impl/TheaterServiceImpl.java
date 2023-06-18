@@ -16,7 +16,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 import static com.example.server.security.response.ResponseStatus.*;
 
@@ -28,16 +27,21 @@ public class TheaterServiceImpl implements TheaterService {
 
     @Override
     public TKResponse<List<TheaterResponseDto>> getAll() {
-        return new TKResponse<>(theaterUtil.toTheaterDtos(theaterRepository.findAll()));
+        return new TKResponse<>(theaterUtil.toTheaterDtos(theaterRepository.findAll(), true));
     }
 
     @Override
-    public TKResponse<TheaterRequestDto> findById(UUID id) {
+    public TKResponse<List<TheaterResponseDto>> getAll2() {
+        return new TKResponse<>(theaterUtil.toTheaterDtos(theaterRepository.findAll(), false));
+    }
+
+    @Override
+    public TKResponse<TheaterResponseDto> findById(Long id) {
         Theater entity = theaterRepository.findById(id).orElse(null);
         if (entity == null)
             return new TKResponse<>(ID_NOT_EXIST);
 
-        return new TKResponse<>(TheaterUtil.convertToDto(entity));
+        return new TKResponse<>(new TheaterResponseDto(entity));
     }
 
     @Override
@@ -53,7 +57,7 @@ public class TheaterServiceImpl implements TheaterService {
     }
 
     @Override
-    public TKResponse<TheaterRequestDto> update(UUID id, TheaterRequestDto dto) {
+    public TKResponse<TheaterRequestDto> update(Long id, TheaterRequestDto dto) {
         Theater entity = theaterRepository.findById(id).orElse(null);
         if (entity == null)
             return new TKResponse<>(ID_NOT_EXIST);
@@ -68,7 +72,7 @@ public class TheaterServiceImpl implements TheaterService {
     }
 
     @Override
-    public TKResponse<Boolean> deleteById(UUID id) {
+    public TKResponse<Boolean> deleteById(Long id) {
         if (!theaterRepository.existsById(id))
             return new TKResponse<>(ID_NOT_EXIST);
         try {

@@ -20,6 +20,10 @@ public class ScheduleInfoResponseDto {
     private String biDanh;
     private String trailer;
     private String hinhAnh;
+    private String daoDien;
+    private String dienVien;
+    private String theLoai;
+    private String rated;
     private String moTa;
     private LocalDate ngayKhoiChieu;
     private int danhGia;

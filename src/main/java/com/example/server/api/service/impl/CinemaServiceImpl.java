@@ -1,6 +1,7 @@
 package com.example.server.api.service.impl;
 
 import com.example.server.api.dto.request.CinemaRequestDto;
+import com.example.server.api.dto.response.CinemaResponseDto;
 import com.example.server.api.entity.Cinema;
 import com.example.server.api.exception.TKException;
 import com.example.server.api.repository.CinemaRepository;
@@ -11,6 +12,8 @@ import com.example.server.security.response.TKResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 import static com.example.server.security.response.ResponseStatus.*;
 
@@ -27,6 +30,11 @@ public class CinemaServiceImpl implements CinemaService {
             return new TKResponse<>(ID_NOT_EXIST);
 
         return new TKResponse<>(CinemaUtil.convertToDto(entity));
+    }
+
+    @Override
+    public TKResponse<List<CinemaResponseDto>> findByTheaterId(Long id) {
+        return new TKResponse(cinemaRepository.findAllByTheaterId(id));
     }
 
     @Override

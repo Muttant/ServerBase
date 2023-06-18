@@ -6,10 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "tbl_cinema")
@@ -25,5 +23,6 @@ public class Cinema extends BaseObject {
     @JoinColumn(name = "maHeThongRap", referencedColumnName = "id")
     private Theater maHeThongRap;
     private String sdt;
-
+    @OneToMany(mappedBy = "cinema")
+    private List<Room> rooms;
 }

@@ -20,5 +20,6 @@ public class TicketResponseDto {
     private String ngayDat;
     private String tenPhim;
     private byte thoiLuongPhim;
+    private  String taiKhoan;
     private List<SeatInfoResponseDto> danhSachGhe;
 }

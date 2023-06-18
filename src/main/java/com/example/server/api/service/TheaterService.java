@@ -5,12 +5,12 @@ import com.example.server.api.dto.response.TheaterResponseDto;
 import com.example.server.security.response.TKResponse;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface TheaterService {
     TKResponse<List<TheaterResponseDto>> getAll();
-    TKResponse<TheaterRequestDto> findById(UUID id);
+    TKResponse<List<TheaterResponseDto>> getAll2();
+    TKResponse<TheaterResponseDto> findById(Long id);
     TKResponse<TheaterRequestDto> save(TheaterRequestDto dto);
-    TKResponse<TheaterRequestDto> update(UUID id, TheaterRequestDto dto);
-    TKResponse<Boolean> deleteById(UUID id);
+    TKResponse<TheaterRequestDto> update(Long id, TheaterRequestDto dto);
+    TKResponse<Boolean> deleteById(Long id);
 }

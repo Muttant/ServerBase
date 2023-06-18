@@ -2,6 +2,7 @@ package com.example.server.api.rest;
 
 import com.example.server.api.dto.request.BookTicketsRequestDto;
 import com.example.server.api.dto.response.MovieSaleByWeekResponseDto;
+import com.example.server.api.dto.response.TicketResponseDto;
 import com.example.server.api.service.TicketService;
 import com.example.server.security.response.TKResponse;
 import lombok.RequiredArgsConstructor;
@@ -22,4 +23,7 @@ public class TicketController {
 
     @GetMapping("/DoanhThuPhimTheoThang")
     public TKResponse<List<MovieSaleByWeekResponseDto>> getSalebyWeek(Integer month, Integer year){ return ticketService.getSalebyWeek(month, year); }
+
+    @GetMapping("/getAllTicket")
+    public TKResponse<List<TicketResponseDto>> getAllTicket(){ return ticketService.getAllTicket(); }
 }

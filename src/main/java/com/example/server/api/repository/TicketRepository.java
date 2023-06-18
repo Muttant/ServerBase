@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
-    @Query("select ti from Ticket as ti where ti.user.username = :username")
+    @Query("select ti from Ticket as ti where ti.user.username = :username order by ti.maVe asc")
     List<Ticket> getByUsername(@Param("username") String username);
 
     Ticket findFirstByOrderByMaVeDesc();

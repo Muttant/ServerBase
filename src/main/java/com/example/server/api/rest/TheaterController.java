@@ -1,6 +1,7 @@
 package com.example.server.api.rest;
 
 import com.example.server.api.dto.request.TheaterRequestDto;
+import com.example.server.api.dto.response.CinemaResponseDto;
 import com.example.server.api.dto.response.TheaterResponseDto;
 import com.example.server.api.dto.response.TheaterTestResponseDto;
 import com.example.server.api.service.TheaterService;
@@ -23,14 +24,25 @@ public class TheaterController {
     public TKResponse<List<TheaterResponseDto>> getAll(){
         return theaterService.getAll();
     }
+
+    @GetMapping("/LayThongTinLichChieuHeThongRap2")
+    public TKResponse<TheaterResponseDto> getById(@RequestParam("maHeThongRap") Long id){
+        return theaterService.findById(id);
+    }
+
+    @GetMapping("/LayThongTinHeThongRap")
+    public TKResponse<List<TheaterResponseDto>> getAll2(){
+        return theaterService.getAll2();
+    }
+
     @GetMapping("/LstTheater")
     public TKResponse<List<TheaterTestResponseDto>> getLstTheater(){
         return theaterTestService.getAll();
     }
+    @GetMapping("/LayThongTinCumRap")
+    public TKResponse<List<TheaterTestResponseDto>> findByTheaterId(@RequestParam("maHeThongRap") Long theaterId){
+        return theaterTestService.findByTheaterId(theaterId);
 
-    @GetMapping("/{theaterId}")
-    public TKResponse<TheaterRequestDto> findById(@PathVariable("theaterId") UUID theaterId){
-        return theaterService.findById(theaterId);
     }
 
     @PostMapping
@@ -39,12 +51,12 @@ public class TheaterController {
     }
 
     @PutMapping("/{theaterId}")
-    public TKResponse<TheaterRequestDto> update(@PathVariable("theaterId") UUID theaterId, @RequestBody TheaterRequestDto dto){
+    public TKResponse<TheaterRequestDto> update(@PathVariable("theaterId") Long theaterId, @RequestBody TheaterRequestDto dto){
         return theaterService.update(theaterId, dto);
     }
 
     @DeleteMapping("/{theaterId}")
-    public TKResponse<Boolean> deleteById(@PathVariable("theaterId") UUID theaterId){
+    public TKResponse<Boolean> deleteById(@PathVariable("theaterId") Long theaterId){
         return theaterService.deleteById(theaterId);
     }
 }
